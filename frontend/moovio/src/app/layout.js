@@ -1,6 +1,7 @@
 import {Source_Sans_3} from 'next/font/google';
 import "./globals.css";
 import Sidebar from '@/components/sidebar';
+import Navbar from '@/components/navbar';
 
 const sourceSans = Source_Sans_3({
   family: 'Source+Sans+3',
@@ -16,13 +17,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={sourceSans.className}>
-        <div className="flex flex-row gap-5">
-          <div className='w-1/6'>
-            <Sidebar/>
-          </div>
-          <div className='w-5/6'>
-            {children}
-          </div>
+        <div className="flex flex-col gap-5">
+            <div className='w-full h-1/6'>
+                <Navbar/>
+            </div>
+            <div className='w-full h-5/6'>
+                {children}
+            </div>
         </div>
       </body>
     </html>
