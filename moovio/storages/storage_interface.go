@@ -1,6 +1,9 @@
 package storages
 
-import "context"
+import (
+	"context"
+	"moovio-v3/moovio/models"
+)
 
 type MigrationRepo interface {
 	InitiateTable(ctx context.Context) error
@@ -8,6 +11,12 @@ type MigrationRepo interface {
 	InsertDBVersion(ctx context.Context, version int) error
 }
 
+type CollectorRepo interface {
+	InsertMoviesBulk(ctx context.Context, movies []models.Movies) error
+	GetMovieList(ctx context.Context) ([]models.Movies, error)
+}
+
 type MoovioRepo interface {
 	MigrationRepo
+	CollectorRepo
 }

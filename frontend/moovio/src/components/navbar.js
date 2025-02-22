@@ -14,10 +14,10 @@ const Navbar = () => {
 
   return (
     <nav className="bg-neutral-900 shadow-lg">
-      <div className="container mx-auto p-4 py-6 flex items-center justify-between">
+      <div className="container mx-auto p-4 flex items-center justify-between">
         <div className="flex items-center gap-5">
           <Image src="/clapperboard.png" alt="brand-logo" height={30} width={30}/>
-          <h1 className="text-2xl font-bold">Moovio</h1>
+          <h1 className="text-xl font-bold">Moovio</h1>
         </div>
         <ul className="flex items-center space-x-5">
           {menuItems.map((item) => (

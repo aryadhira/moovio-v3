@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"moovio-v3/moovio/migration"
+	"moovio-v3/moovio/services"
 	"moovio-v3/moovio/storages/postgres"
 
 	"github.com/joho/godotenv"
@@ -20,16 +21,18 @@ func main() {
 		log.Fatal(err)
 	}
 
+	ctx := context.Background()
+
 	migration := migration.New(db)
-	err = migration.Run(context.Background())
+	err = migration.Run(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// coll := collector.NewMovieCollector(db)
-	// err = coll.CollectMovie(context.Background())
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
+	svc := services.NewMoovioSvc(ctx, db)
+	apiHandler := services.NewHandler(svc)
+	err = apiHandler.Start()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
